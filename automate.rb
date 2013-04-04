@@ -1,16 +1,8 @@
 require 'rubygems'
 require 'selenium-webdriver'
+
+load 'utility.rb'
  
-def fill_input_with(id, value)
-  wait = Selenium::WebDriver::Wait.new(:timeout => 15)
-
-  input = wait.until {
-      element = @browser.find_element(:id, id)
-      element if element.displayed?
-  }
-  input.send_keys(value)
-end
-
 # Initialize browser
 @browser = Selenium::WebDriver.for :firefox
 @browser.get "http://instacart.com/accounts/login"
