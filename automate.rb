@@ -1,25 +1,26 @@
 require 'rubygems'
 require 'selenium-webdriver'
  
-@browser = Selenium::WebDriver.for :firefox
-@browser.get "http://instacart.com/accounts/login"
- 
 def fill_input_with(id, value)
   wait = Selenium::WebDriver::Wait.new(:timeout => 15)
 
   input = wait.until {
-      element = @browser.find_element(:id, "user_email")
+      element = @browser.find_element(:id, id)
       element if element.displayed?
   }
-  input.send_keys("enomitch@gmail.com")
+  input.send_keys(value)
 end
 
+# Initialize browser
+@browser = Selenium::WebDriver.for :firefox
+@browser.get "http://instacart.com/accounts/login"
+
+# Fill in the Login form
 fill_input_with "user_email",    "enomitch@gmail.com"
 fill_input_with "user_password", "automator1"
- 
-# Find text on the page by regexp
-#puts "Test Passed: Page 1 Validated" if wait.until {
-    #/Testing Web Applications with Ruby and Selenium WebDriver/.match(browser.page_source)
-#}
- 
-browser.quit
+
+# Sign in
+@browser.find_element(:name => "commit").click
+
+# Quit
+@browser.quit
