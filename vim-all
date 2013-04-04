@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+vim `find ./ -iname '*.rb'` vim-all run
