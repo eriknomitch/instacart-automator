@@ -3,7 +3,7 @@ require 'selenium-webdriver'
 
 load 'utility.rb'
 load 'attribute_initializable.rb'
-loat 'cart.rb'
+load 'cart.rb'
 load 'item.rb'
 
 Item.define 42557, 3
