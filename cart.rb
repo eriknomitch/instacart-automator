@@ -11,12 +11,12 @@ class Cart < AttributeInitializable
 
     # Select first credit card
     puts "Selecting first credit card..."
-    @@browser.execute_script("$('#credit_card_id').val($('#credit_card_id option:first').val())")
+    @@browser.execute_script("$('#credit_card_id').val($('#credit_card_id option:eq(1)').val())")
     sleep 1
 
     # Select first address
     puts "Selecting first address..."
-    @@browser.execute_script("$('#address_id').val($('#address_id option:first').val())")
+    @@browser.execute_script("$('#address_id').val($('#address_id option:eq(1)').val())")
     sleep 1
 
     # Set policy to "Shoppers Choice"
