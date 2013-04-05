@@ -5,15 +5,17 @@ class Item < AttributeInitializable
 
   def add()
     puts "Adding item #{id}..."
-    @@browser.execute_script("$('[data-item-id=\"#{id}\"]').find('.btn-add-to-cart').click()")
 
-    if quantity > 1
-      (quantity - 1).times do |index|
-      end
-      sleep 0.5
-    end
+    @@browser.execute_script("InstacartStore.cart.addItem(#{id}, #{quantity})")
 
-    sleep 0.5
+    # Open the detailed view of the Item
+    #@@browser.goto "http://instacart.com/store#items/#{id}"
+
+    ## Click the "Add to Cart" button
+    #@@browser.element(:xpath, "//header[@class='clearfix detail-he=> []]//button[@class='btn btn-large btn-qty inc']").click
+
+    #@@browser.element(:xpath, "//li[@data-item-id='#{id}']//button[@class='btn btn-add-to-cart']").click
+
   end
 
   def self.add_items

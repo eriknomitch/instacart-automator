@@ -2,6 +2,7 @@ require 'rubygems'
 require 'selenium-webdriver'
 require 'watir'
 require 'watir-webdriver'
+require 'pry'
 
 load 'utility.rb'
 load 'attribute_initializable.rb'
@@ -35,8 +36,6 @@ Cart.clear
 puts "Adding items..."
 
 Item.add_items
-
-sleep 2
 
 puts "Placing order..."
 Cart.place_order
