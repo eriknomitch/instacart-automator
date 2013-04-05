@@ -10,10 +10,10 @@ class Item < AttributeInitializable
     if quantity > 1
       (quantity - 1).times do |index|
       end
-      sleep 0.1
+      sleep 0.5
     end
 
-    sleep 0.1
+    sleep 0.5
   end
 
   def self.add_items

@@ -33,13 +33,16 @@ sleep 5
 puts "Clearing cart..."
 Cart.clear
 
+sleep 3
+
 # Add items
 puts "Adding items..."
 
 Item.add_items
 
-sleep 1
+sleep 2
 
+puts "Placing order..."
 Cart.place_order
 
 # Quit
