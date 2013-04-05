@@ -10,35 +10,36 @@ Item.define 34180, 1
 Item.define 40082, 1
 
 # Initialize browser
+puts "Initializing browser..."
 @browser = Selenium::WebDriver.for :firefox
+
+puts "Fetching Login page..."
 @browser.get "http://instacart.com/accounts/login"
 
 # Fill in the Login form
+puts "Filling in Login form..."
 fill_input_with "user_email",    "enomitch@gmail.com"
 fill_input_with "user_password", "changeme123"
 
-# Sign in
+# Login
+puts "Logging in..."
 @browser.find_element(:name => "commit").click
 
-  
-wait = Selenium::WebDriver::Wait.new(:timeout => 15)
-  
-add_buttons = wait.until {
-  #element = @browser.find_element(:xpath => "//*[@data-item-id=\"42557\"]/[@class=\"btn-add-to-cart\"]")
-  #element = @browser.find_element(:xpath => "//*[@data-item-id=\"42557\"[button[@class=\"btn-add-to-cart\"]]]")
-  #element = @browser.find_element(:xpath => "//*[@data-item-id=\"42557\"]/button[@class=\"btn-add-to-cart\"]")
-  element = @browser.find_element(:xpath => "//*[@data-item-id=\"42557\"]")
-  element if element.displayed?
-}
+puts "Waiting for Store page to load..."
+sleep 5
+
+# Clear cart
+puts "Clearing cart..."
+clear_cart
 
 # Add items
 Item.items.each do |item|
+  puts "Adding item #{item.id}..."
   @browser.execute_script("$('[data-item-id=\"#{item.id}\"]').find('.btn-add-to-cart').click()")
-  sleep 0.5
+  sleep 0.1
 end
 
 sleep 2
-#add_buttons.click
 
 # Quit
 @browser.quit
