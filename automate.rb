@@ -11,10 +11,10 @@ Item.define 40082, 1
 
 # Initialize browser
 puts "Initializing browser..."
-@browser = Selenium::WebDriver.for :firefox
+@@browser = Selenium::WebDriver.for :firefox
 
 puts "Fetching Login page..."
-@browser.get "http://instacart.com/accounts/login"
+@@browser.get "http://instacart.com/accounts/login"
 
 # Fill in the Login form
 puts "Filling in Login form..."
@@ -23,7 +23,7 @@ fill_input_with "user_password", "changeme123"
 
 # Login
 puts "Logging in..."
-@browser.find_element(:name => "commit").click
+@@browser.find_element(:name => "commit").click
 
 puts "Waiting for Store page to load..."
 sleep 5
@@ -33,13 +33,11 @@ puts "Clearing cart..."
 clear_cart
 
 # Add items
-Item.items.each do |item|
-  puts "Adding item #{item.id}..."
-  @browser.execute_script("$('[data-item-id=\"#{item.id}\"]').find('.btn-add-to-cart').click()")
-  sleep 0.1
-end
+puts "Adding items..."
+
+Item.add_items
 
 sleep 2
 
 # Quit
-@browser.quit
+@@browser.quit
