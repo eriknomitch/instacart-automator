@@ -5,6 +5,7 @@ class Cart < AttributeInitializable
 
   def self.place_order
     # Click "Place Order"
+    #@@browser.goto("#{TARGET_URL_PREFIX}/store#checkout")
     @@browser.element(:xpath, "//a[@href='#checkout']").click
 
     # Select first credit card
@@ -19,8 +20,8 @@ class Cart < AttributeInitializable
     puts "Setting policy to 'Shoppers Choice'..."
     @@browser.element(:xpath, "//input[@id='order_replacement_policy_shoppers_choice']").click
 
-    #@@browser.element(:xpath, "//body").click
-    binding.pry
+    # Wait for the delivery timeframe options to show up
+    sleep 1
 
     # Select the "Immediate" option
     puts "Selecting 'Immediate' delivery timeframe option..."

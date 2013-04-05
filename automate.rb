@@ -13,13 +13,15 @@ Item.define 42557, 3
 Item.define 34180, 1
 Item.define 40082, 1
 
+TARGET_URL_PREFIX="http://instacart.com"
+
 # Initialize browser
 puts "Initializing browser..."
 @@browser = Watir::Browser.new
 
 # Fetch Login page..."
 puts "Fetching Login page..."
-@@browser.goto "http://instacart.com/accounts/login"
+@@browser.goto "#{TARGET_URL_PREFIX}/accounts/login"
 
 # Fill in the Login form
 puts "Filling in Login form..."
