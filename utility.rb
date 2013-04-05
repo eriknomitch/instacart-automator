@@ -24,5 +24,9 @@ def select_first_non_empty_value_in_select_list(id)
     end
   end
 
-  @@browser.select_list(:id => id).select_value(option_to_select.value)
+  if option_to_select
+    @@browser.select_list(:id => id).select_value(option_to_select.value)
+  else
+    raise "Cannot select option in list id=#{id}; no options with values exist"
+  end
 end
