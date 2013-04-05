@@ -40,6 +40,8 @@ Item.add_items
 puts "Placing order..."
 Cart.place_order
 
+sleep 5
+
 # Quit
 puts "Quitting browser..."
 @@browser.quit

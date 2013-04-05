@@ -1,32 +1,29 @@
 class Cart < AttributeInitializable
   def self.clear
-    @@browser.execute_script("$('.remove-item').click()")
+    @@browser.execute_script("InstacartStore.cart.clear()")
   end
 
   def self.place_order
-
-    @@browser.execute_script("$('.btn-checkout').click()")
-
-    sleep 2
+    # Click "Place Order"
+    @@browser.element(:xpath, "//a[@href='#checkout']").click
 
     # Select first credit card
     puts "Selecting first credit card..."
-    @@browser.execute_script("$('#credit_card_id').val($('#credit_card_id option:eq(1)').val())")
-    sleep 1
+    select_index_in_select_list("credit_card_id", 1)
 
     # Select first address
     puts "Selecting first address..."
-    @@browser.execute_script("$('#address_id').val($('#address_id option:eq(1)').val())")
-    sleep 1
+    select_index_in_select_list("address_id", 1)
 
     # Set policy to "Shoppers Choice"
     puts "Setting policy to 'Shoppers Choice'..."
-    @@browser.execute_script("$('#order_replacement_policy_shoppers_choice').click()")
-    sleep 1
+    @@browser.element(:xpath, "//input[@id='order_replacement_policy_shoppers_choice']").click
+
+    #@@browser.element(:xpath, "//body").click
+    binding.pry
 
     # Select the "Immediate" option
     puts "Selecting 'Immediate' delivery timeframe option..."
-    @@browser.execute_script("$('#delivery_option_1').val(1)")
-    sleep 1
+    select_first_non_empty_value_in_select_list "delivery_option_1"
   end
 end
