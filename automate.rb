@@ -3,6 +3,7 @@ require 'selenium-webdriver'
 
 load 'utility.rb'
 load 'attribute_initializable.rb'
+loat 'cart.rb'
 load 'item.rb'
 
 Item.define 42557, 3
@@ -30,14 +31,16 @@ sleep 5
 
 # Clear cart
 puts "Clearing cart..."
-clear_cart
+Cart.clear
 
 # Add items
 puts "Adding items..."
 
 Item.add_items
 
-sleep 2
+sleep 1
+
+Cart.place_order
 
 # Quit
 @@browser.quit

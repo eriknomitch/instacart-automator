@@ -8,7 +8,3 @@ def fill_input_with(id, value)
   input.send_keys(value)
 end
 
-def clear_cart()
-  @@browser.execute_script("$('.remove-item').click()")
-end
-
