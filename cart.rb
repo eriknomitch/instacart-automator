@@ -4,6 +4,6 @@ class Cart < AttributeInitializable
   end
 
   def self.place_order
-    @@browser.find_element(:class => "btn-checkout").click
+    @@browser.execute_script("$('.btn-checkout').click()")
   end
 end
